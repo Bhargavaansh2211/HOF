@@ -1,4 +1,6 @@
+'use client'
 import React from 'react';
+import Link from "next/link";
 
 const Header = () => {
     return (
@@ -7,33 +9,26 @@ const Header = () => {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
-                            <a href="/" className="text-white">
+                            <Link href="/" className="text-white">
                                 Logo
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="hidden md:block">
                         <div className="ml-4 flex items-center space-x-4">
-                            <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                            <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                                 Home
-                            </a>
-                            <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                            </Link>
+                            <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                                 Trips
-                            </a>
-                            <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
-                                About Us
-                            </a>
-                            <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
-                                Help
-                            </a>
-                            <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                            </Link>
+                            <Link href="/About" className="text-white hover:bg-white hover:text-black rounded-lg p-2">About Us</Link>
+                            <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                                 Log In
-                            </a>
-                            <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                            </Link>
+                            <Link href="/" className="text-black bg-white hover:bg-white hover:text-black rounded-lg p-2">
                                 Sign Up
-                            </a>
-                            
-                            
+                            </Link>
                         </div>
                     </div>
                 </div>

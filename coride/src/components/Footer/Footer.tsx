@@ -3,7 +3,6 @@ import React from 'react'
 const Footer = () => {
   return (
     <>
-      {/* component */}
 <div className="flex items-end w-full min-h-screen bg-white">
 
 <footer className="w-full text-gray-700 bg-gray-100 body-font">
