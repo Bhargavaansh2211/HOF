@@ -9,9 +9,10 @@ const Header = () => {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
-                            <Link href="/" className="text-white">
-                                Logo
-                            </Link>
+                            <a href="/" className="text-white">
+                                Logoss
+                                {/* comment */}
+                            </a>
                         </div>
                     </div>
                     <div className="hidden md:block">
