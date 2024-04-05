@@ -6,7 +6,7 @@ const page = async () => {
     console.log(user)
   return (
     <div>
-      onbaording
+      onbaording page
     </div>
   )
 }
