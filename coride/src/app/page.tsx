@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <>
        
-      <div className='flex w-full '>
+      <div className='flex w-full mt-10 '>
         <div className="relative w-[50%] ">
         <AnimatedText text="AnyTime, AnyWhere" />
         {showWithCoRide && (
