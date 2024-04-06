@@ -1,8 +1,10 @@
 "use client"
+import { useRouter } from 'next/router';
 import React, { useState, FormEvent, ChangeEvent } from 'react'
 import { currentUser } from '@clerk/nextjs'
 
 const Page = () => {
+  
   const [role, setRole] = useState('');
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
