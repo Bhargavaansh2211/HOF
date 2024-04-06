@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import Link from "next/link";
+import Image from 
 import { UserButton } from '@clerk/nextjs';
 
 const Header = () => {
@@ -17,13 +18,13 @@ const Header = () => {
                     </div>
                     <div className="hidden md:block">
                         <div className="ml-4 mr-2 flex items-center space-x-4">
-                            <Link href="/" className="text-black bg-white hover:bg-white hover:text-black rounded-lg p-2">
+                            <Link href="/" className="text-black bg-yellow hover:bg-white hover:text-black rounded-lg p-2">
                                 Home
                             </Link>
-                            <Link href="/" className="text-black bg-white hover:bg-white hover:text-black rounded-lg p-2">
+                            <Link href="/" className="text-black bg-yellow hover:bg-white hover:text-black rounded-lg p-2">
                                 Trips
                             </Link>
-                            <Link href="/About" className="text-black bg-white hover:bg-white hover:text-black rounded-lg p-2">About Us</Link>
+                            <Link href="/About" className="text-black bg-yellow hover:bg-white hover:text-black rounded-lg p-2">About Us</Link>
                             <UserButton/>
                         </div>
                     </div>
