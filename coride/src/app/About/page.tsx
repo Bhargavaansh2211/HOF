@@ -28,6 +28,7 @@ const About = () => {
               <p data-aos="fade-up" className="font-bold">
                 Booking a ride with CoRide is simple and intuitive. Users can easily input their destination and preferred time for travel through our user-friendly mobile app or website. Our advanced algorithm then matches users with nearby riders heading in the same direction, allowing them to share the ride and split the fare.
               </p>
+              <br></br>
               <a href='/'>
                 <button className="bg-yellow-400 hover:bg-blue-700 text-black font-bold py-2 px-4 border border-blue-700 rounded" >
                   Get Started

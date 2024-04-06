@@ -13,7 +13,7 @@ export async function POST(request: any) {
       const newDriver = await Driver.create({
         car_type: vehicleType,
         reg_no: vehicleNumber,
-        rating: 0 // Default rating
+        rating: 0 
       });
 
       const newUser = await User.create({

@@ -1,17 +1,18 @@
 "use client"
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React, { useState, FormEvent, ChangeEvent } from 'react'
-import { currentUser } from '@clerk/nextjs'
+// import { currentUser } from '@clerk/nextjs'
 
 const Page = () => {
-  const [success, setSuccess] = useState(false)
-  const [role, setRole] = useState('');
+  
+  const [role, setRole] = useState('Customer');
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
   const [mobile, setMobile] = useState('');
   const [vehicleType, setVehicleType] = useState('');
   const [vehicleNumber, setVehicleNumber] = useState('');
   const [gender, setGender] = useState('Male');
+  const router = useRouter()
 
   
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -36,9 +37,9 @@ const Page = () => {
         throw new Error('Failed to create user');
         setSuccess(!success)
       }
-      // Handle success
-      console.log('User created successfully')
-      setSuccess(!success);
+      
+      console.log('User created successfully');
+      router.push('/')
     } catch (error) {
       console.log(error)
     }
