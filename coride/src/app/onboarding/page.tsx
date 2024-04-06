@@ -4,7 +4,7 @@ import React, { useState, FormEvent, ChangeEvent } from 'react'
 // import { currentUser } from '@clerk/nextjs'
 
 const Page = () => {
-  
+  const [success,setSuccess] = useState(false);
   const [role, setRole] = useState('Customer');
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
@@ -45,7 +45,7 @@ const Page = () => {
     }
   };
   if (success == true && role == 'Driver') {
-    window.location.href = '/driver'; // Redirect to adult page
+    window.location.href = '/driver'; 
   } 
 
 
