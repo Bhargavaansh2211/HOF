@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.11",
+    "@maptiler/leaflet-maptilersdk": "^2.0.0",
+    "leaflet": "^1.9.4",
     "mongoose": "^8.3.0",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

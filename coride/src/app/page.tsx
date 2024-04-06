@@ -1,4 +1,9 @@
 'use client'
+
+import dynamic from 'next/dynamic';
+const Map = dynamic(() => import('../components/Map/Map'), {
+  ssr: false,
+});
 import { useEffect, useState } from 'react';
 
 interface AnimatedTextProps {
@@ -44,12 +49,13 @@ export default function Home() {
 
   return (
     <>
-      <div>
+       
+      <div className='flex w-full '>
+        <div className="relative w-[50%] ">
         <AnimatedText text="AnyTime, AnyWhere" />
         {showWithCoRide && (
           <AnimatedText text="with CoRide" />
         )}
-        <div className="relative">
           <input 
             type="text" 
             placeholder="Enter Pick Up Point" 
@@ -61,6 +67,9 @@ export default function Home() {
             placeholder="Enter Destination" 
             className="border-2 border-black rounded-md m-10 ml-52 py-2 px-4 h-14 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
           />
+        </div>
+        <div className='w-[50%] mr-16 mt-12 h-max'>
+        <Map/>
         </div>
       </div>
     </>
