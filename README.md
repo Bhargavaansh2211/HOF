@@ -1,5 +1,5 @@
 # CoRide
-This Project is a Shared Cab Booking platform made using the concepts of React,Next JS,MongoDB.
+This Project is a Shared Cab Booking platform made using the concepts of React, Next JS, MongoDB, TypeScript, JavaScript.
 
 ## Description
 A web platform which revolutionizes the way users book cabs by allowing the users to share the journey with other people and split the fare, making it more economical, along side saving fuel and making less congestion on roads.
