@@ -1,6 +1,6 @@
 'use client'
-
 import dynamic from 'next/dynamic';
+import Link from "next/link"
 const Map = dynamic(() => import('../components/Map/Map'), {
   ssr: false,
 });
@@ -59,14 +59,14 @@ export default function Home() {
           <input 
             type="text" 
             placeholder="Enter Pick Up Point" 
-            className="border-2 border-black rounded-md mt-10 ml-52 py-2 px-4 h-14 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+            className="border-2 border-black rounded-md mt-10 ml-52 px-4 h-14 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
           />
-          <br />
           <input 
             type="text" 
-            placeholder="Enter Destination" 
-            className="border-2 border-black rounded-md m-10 ml-52 py-2 px-4 h-14 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-          />
+            placeholder="Enter Destination Point" 
+            className="border-2 border-black rounded-md m-10 ml-52 px-4 h-14 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+          /><br/>
+          <Link href="/" className="text-black h-12 bg-yellow-400 ml-52 hover:bg-slate-400 hover:text-black rounded-lg p-2">See Prices</Link>
         </div>
         <div className='w-[50%] mr-16 mt-12 h-max'>
         <Map/>

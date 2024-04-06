@@ -17,8 +17,6 @@ const Page = () => {
   
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const user=await currentUser()
-    // console.log(user)
     try {
       const response = await fetch('/api/addUser', {
         method: 'POST',
