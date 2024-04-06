@@ -42,13 +42,13 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text }) => {
 };
 
 const Home = () => {
-  const sourceAutocomplete = useRef<any>(null); // Define the useRef hook inside the functional component
+  const sourceAutocomplete = useRef<any>(null); 
   const destinationAutocomplete = useRef<any>(null);
   const [showWithCoRide, setShowWithCoRide] = useState(false);
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [source, setSource] = useState<google.maps.LatLngLiteral | undefined>(undefined);
   const [destination, setDestination] = useState<google.maps.LatLngLiteral | undefined>(undefined);
-  const [directions, setDirections] = useState<any>(null); // Store directions response
+  const [directions, setDirections] = useState<any>(null);
 
   const handleScriptLoad = () => {
     setScriptLoaded(true);
@@ -130,7 +130,7 @@ const Home = () => {
             )}
           </LoadScript>
           <br />
-          <Link href="/" className="text-black h-12 bg-yellow-400 ml-52 hover:bg-slate-400 hover:text-black rounded-lg p-2">See Prices</Link>
+          <Link href="/Trips" className="text-black h-12 bg-yellow-400 ml-52 hover:bg-slate-400 hover:text-black rounded-lg p-2">See Prices</Link>
         </div>
         <div className='w-[50%] mr-16 ml-12'>
           <div style={{ height: '300px', width: '100%' }}>
