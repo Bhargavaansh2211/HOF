@@ -3,13 +3,9 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
-import { DirectionsRenderer } from '@react-google-maps/api'; // Import DirectionsRenderer from the correct package
-
-
+import { DirectionsRenderer } from '@react-google-maps/api';
 import { useRef } from 'react';
-
-// Inside your Home component
-
+import { currentUser } from '@clerk/nextjs';
 
 interface AnimatedTextProps {
   text: string;
@@ -41,14 +37,63 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text }) => {
   }
 };
 
-const Home = () => {
-  const sourceAutocomplete = useRef<any>(null); 
+const logCurrentUser = async () => {
+  try {
+    const user = await currentUser();
+    console.log(user);
+  } catch (error) {
+    console.error('Error fetching current user:', error);
+  }
+};
+
+
+logCurrentUser();
+const Home =  () => {
+  
+  const updateUserLocation = async (userId: string) => {
+    try {
+      // Obtain the user's current location using geolocation
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        console.log(latitude,longitude)
+  
+        // Send a PUT request to update the user's location
+        const response = await fetch(`/api/updateLocation?userId=${userId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ latitude, longitude }),
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to update user location');
+        }
+  
+        const data = await response.json();
+        console.log('User location updated:', data);
+      }, (error) => {
+        console.error('Error getting user location:', error);
+      });
+    } catch (error) {
+      console.error('Error updating user location:', error);
+    }
+  };
+  
+  
+  
+  const googleMapsApiKey = process.env.NEXT_PUBLIC_API_KEY;
+  console.log("api key",googleMapsApiKey)
+  const sourceAutocomplete = useRef<any>(null);
   const destinationAutocomplete = useRef<any>(null);
   const [showWithCoRide, setShowWithCoRide] = useState(false);
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [source, setSource] = useState<google.maps.LatLngLiteral | undefined>(undefined);
   const [destination, setDestination] = useState<google.maps.LatLngLiteral | undefined>(undefined);
   const [directions, setDirections] = useState<any>(null);
+  const [duration, setDuration] = useState<string>('');
+  const [distance, setDistance] = useState<string>('');
+  const [userLocation, setUserLocation] = useState<google.maps.LatLngLiteral | undefined>(undefined);
 
   const handleScriptLoad = () => {
     setScriptLoaded(true);
@@ -63,12 +108,62 @@ const Home = () => {
   };
 
   useEffect(() => {
+    if (scriptLoaded && destination) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setUserLocation({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+            setSource({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+  
+            
+            updateUserLocation(); 
+          },
+          (error) => {
+            console.error('Error getting user location:', error);
+          }
+        );
+      } else {
+        console.error('Geolocation is not supported by this browser.');
+      }
+    }
+  }, [scriptLoaded, destination]);
+  useEffect(() => {
     const timeout = setTimeout(() => {
       setShowWithCoRide(true);
     }, 1500);
 
     return () => clearTimeout(timeout);
   }, []);
+
+  useEffect(() => {
+    if (scriptLoaded && destination) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setUserLocation({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+            setSource({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+          },
+          (error) => {
+            console.error('Error getting user location:', error);
+          }
+        );
+      } else {
+        console.error('Geolocation is not supported by this browser.');
+      }
+    }
+  }, [scriptLoaded, destination]);
 
   useEffect(() => {
     if (scriptLoaded && source && destination) {
@@ -82,6 +177,10 @@ const Home = () => {
         (result, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
             setDirections(result);
+
+            const route = result?.routes[0].legs[0];
+            if(route?.duration) setDuration(route.duration.text);
+            if(route?.distance) setDistance(route.distance.text);
           } else {
             console.error(`error fetching directions ${result}`);
           }
@@ -98,17 +197,18 @@ const Home = () => {
           {showWithCoRide && (
             <AnimatedText text="with CoRide" />
           )}
-
+          {duration && <p>Duration: {duration}</p>}
+          {distance && <p>Distance: {distance}</p>}
           <LoadScript
-            googleMapsApiKey="AIzaSyDq9wpSkS0FWn4KKqHQ8DHzXy6XuqkuyHw"
+            googleMapsApiKey= {googleMapsApiKey!}
             libraries={['places']}
             onLoad={handleScriptLoad}
           >
             {scriptLoaded && (
               <>
                 <Autocomplete
-                  onLoad={(autocomplete) => sourceAutocomplete.current = autocomplete} // Assign the Autocomplete instance to the ref
-                  onPlaceChanged={() => handlePlaceChanged('source', sourceAutocomplete.current?.getPlace())} // Get the place from the ref
+                  onLoad={(autocomplete) => sourceAutocomplete.current = autocomplete}
+                  onPlaceChanged={() => handlePlaceChanged('source', sourceAutocomplete.current?.getPlace())}
                 >
                   <input
                     type="text"
@@ -117,8 +217,8 @@ const Home = () => {
                   />
                 </Autocomplete>
                 <Autocomplete
-                  onLoad={(autocomplete) => destinationAutocomplete.current = autocomplete} // Assign the Autocomplete instance to the ref
-                  onPlaceChanged={() => handlePlaceChanged('destination', destinationAutocomplete.current?.getPlace())} // Get the place from the ref
+                  onLoad={(autocomplete) => destinationAutocomplete.current = autocomplete}
+                  onPlaceChanged={() => handlePlaceChanged('destination', destinationAutocomplete.current?.getPlace())}
                 >
                   <input
                     type="text"
