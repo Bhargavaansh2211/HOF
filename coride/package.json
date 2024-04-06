@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.29.11",
     "@maptiler/leaflet-maptilersdk": "^2.0.0",
+    "axios": "^1.6.8",
     "leaflet": "^1.9.4",
     "mongoose": "^8.3.0",
     "next": "14.1.4",
