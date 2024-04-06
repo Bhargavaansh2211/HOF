@@ -52,81 +52,83 @@ const Page = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="max-w-md mx-auto mt-10 mb-10 bg-white p-6 rounded-lg shadow-[5px_5px_15px_-5px_rgba(0,0,0,.7)]">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="role" className="block">Role</label>
+          <label htmlFor="role" className="block  text-xl">Role</label>
           <select
             id="role"
             value={role}
             onChange={handleRoleChange}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full h-12  border-2 border-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           >
-            <option value="">Select Role</option>
             <option value="Driver">Driver</option>
             <option value="Customer">Customer</option>
           </select>
         </div>
         <div>
-          <label htmlFor="first_name" className="block">First Name</label>
+          <label htmlFor="first_name" className="block  text-xl">First Name</label>
           <input
             type="text"
             id="first_name"
             value={first_name}
             onChange={handleFirst_nameChange}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full h-12 border-2 border-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="last_name" className="block">Last Name</label>
+          <label htmlFor="last_name" className="block  text-xl">Last Name</label>
           <input
             type="text"
             id="last_name"
             value={last_name}
             onChange={handleLast_nameChange}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full h-12 border-2 border-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="mobile" className="block">Mobile Number</label>
+          <label htmlFor="mobile" className="block  text-xl">Mobile Number</label>
           <input
             type="text"
             id="mobile"
             value={mobile}
             onChange={handleMobileChange}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full h-12 border-2 border-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="gender" className="block">Gender</label>
-          <input
-            type="text"
+          <label htmlFor="role" className="block  text-xl">Gender</label>
+          <select
             id="gender"
             value={gender}
-            onChange={handleGenderChange}
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          />
+            onChange={handleRoleChange}
+            aria-placeholder='Select Gender'
+            className="block w-full h-12  border-2 border-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="Driver">Male</option>
+            <option value="Customer">Female</option>
+          </select>
         </div>
         {role === 'Driver' && (
           <>
             <div>
-              <label htmlFor="vehicleType" className="block">Vehicle Type</label>
+              <label htmlFor="vehicleType" className="block  text-xl">Vehicle Type</label>
               <input
                 type="text"
                 id="vehicleType"
                 value={vehicleType}
                 onChange={handleVehicleTypeChange}
-                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="block w-full h-12 border-2 border-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="vehicleNumber" className="block">Vehicle Number</label>
+              <label htmlFor="vehicleNumber" className="block  text-xl">Vehicle Number</label>
               <input
                 type="text"
                 id="vehicleNumber"
                 value={vehicleNumber}
                 onChange={handleVehicleNumberChange}
-                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="block w-full h-12 border-2 border-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
           </>
