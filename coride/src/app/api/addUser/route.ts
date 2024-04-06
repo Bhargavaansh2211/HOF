@@ -6,7 +6,7 @@ import Driver from "@/models/driver";
 export async function POST(request: any) {
   await connect();
 
-  const { role, first_name, last_name, gender, mobile, vehicleType, vehicleNumber } = await request.json();
+  const { role, first_name, last_name, gender, mobile, vehicleType, vehicleNumber, latitude, longitude } = await request.json();
 
   try {
     if (role === 'Driver') {
@@ -21,7 +21,11 @@ export async function POST(request: any) {
         last_name,
         gender,
         mobile,
-        driver: newDriver._id
+        driver: newDriver._id,
+        location: {
+          latitude,
+          longitude
+        }
       });
       console.log(newUser)
       return NextResponse.json({ message: "User and driver created", data: { user: newUser, driver: newDriver } }, { status: 201 });
@@ -31,6 +35,10 @@ export async function POST(request: any) {
         last_name,
         gender,
         mobile,
+        location: {
+          latitude,
+          longitude
+        }
       });
 
       return NextResponse.json({ message: "User created", data: newUser }, { status: 201 });

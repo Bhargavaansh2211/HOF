@@ -18,29 +18,37 @@ const Page = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/addUser', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          role,
-          first_name,
-          last_name,
-          mobile,
-          gender,
-          vehicleType,
-          vehicleNumber,
-        }),
+      // Obtain the user's current location using the browser's geolocation API
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        const response = await fetch('/api/addUser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            role,
+            first_name,
+            last_name,
+            mobile,
+            gender,
+            vehicleType,
+            vehicleNumber,
+            latitude,
+            longitude
+          }),
+        });
+        if (!response.ok) {
+          throw new Error('Failed to create user');
+        }
+        
+        console.log('User created successfully');
+        router.push('/');
+      }, (error) => {
+        console.error('Error getting user location:', error);
       });
-      if (!response.ok) {
-        throw new Error('Failed to create user');
-      }
-      
-      console.log('User created successfully');
-      router.push('/')
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   if (success == true && role == 'Driver') {
