@@ -7,21 +7,39 @@ const Page = () => {
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
   const [mobile, setMobile] = useState('');
-  const [gender, setGender] = useState('');
   const [vehicleType, setVehicleType] = useState('');
   const [vehicleNumber, setVehicleNumber] = useState('');
+  const [gender, setGender] = useState('Male');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({
-      role,
-      first_name,
-      last_name,
-      mobile,
-      gender,
-      ...(role === 'Driver' && { vehicleType, vehicleNumber }),
-    });
+    try {
+      const response = await fetch('/api/addUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          role,
+          first_name,
+          last_name,
+          mobile,
+          gender,
+          vehicleType,
+          vehicleNumber,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to create user');
+      }
+      // Handle success
+      console.log('User created successfully');
+    } catch (error) {
+      console.log(error)
+    }
   };
+
 
   const handleRoleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setRole(e.target.value);
@@ -39,7 +57,7 @@ const Page = () => {
     setMobile(e.target.value);
   };
 
-  const handleGenderChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleGenderChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setGender(e.target.value);
   };
 
@@ -101,12 +119,12 @@ const Page = () => {
           <select
             id="gender"
             value={gender}
-            onChange={handleRoleChange}
+            onChange={handleGenderChange}
             aria-placeholder='Select Gender'
             className="block w-full h-12  border-2 border-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           >
-            <option value="Driver">Male</option>
-            <option value="Customer">Female</option>
+            <option value="Male">Male</option>
+            <option value="Driver">Female</option>
           </select>
         </div>
         {role === 'Driver' && (

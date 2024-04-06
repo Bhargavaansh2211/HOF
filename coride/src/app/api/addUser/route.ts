@@ -4,31 +4,29 @@ import connect from "../../../utils/db";
 import Driver from "@/models/driver";
 
 export async function POST(request: any) {
-  await connect(); 
+  await connect();
 
-  const { email, first_name, last_name, gender, mobile, driver } = await request.json();
+  const { role, first_name, last_name, gender, mobile, vehicleType, vehicleNumber } = await request.json();
 
   try {
-    if (driver) {
+    if (role === 'Driver') {
       const newDriver = await Driver.create({
-        reg_no: driver.reg_no,
-        car_type: driver.car_type,
-        rating: driver.rating || 0 
+        car_type: vehicleType,
+        reg_no: vehicleNumber,
+        rating: 0 // Default rating
       });
 
       const newUser = await User.create({
-        email,
         first_name,
         last_name,
         gender,
         mobile,
-        driver: newDriver._id 
+        driver: newDriver._id
       });
-
+      console.log(newUser)
       return NextResponse.json({ message: "User and driver created", data: { user: newUser, driver: newDriver } }, { status: 201 });
     } else {
       const newUser = await User.create({
-        email,
         first_name,
         last_name,
         gender,
