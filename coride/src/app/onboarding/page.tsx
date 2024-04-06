@@ -35,7 +35,6 @@ const Page = () => {
       });
       if (!response.ok) {
         throw new Error('Failed to create user');
-        setSuccess(!success)
       }
       
       console.log('User created successfully');
@@ -44,7 +43,7 @@ const Page = () => {
       console.log(error)
     }
   };
-  if (success == true && role == 'Driver') {
+  if (role == 'Driver') {
     window.location.href = '/driver'; // Redirect to adult page
   } 
 
