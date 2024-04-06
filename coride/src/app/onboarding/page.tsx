@@ -4,7 +4,7 @@ import React, { useState, FormEvent, ChangeEvent } from 'react'
 import { currentUser } from '@clerk/nextjs'
 
 const Page = () => {
-  
+  const [success, setSuccess] = useState(false)
   const [role, setRole] = useState('');
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
@@ -34,13 +34,18 @@ const Page = () => {
       });
       if (!response.ok) {
         throw new Error('Failed to create user');
+        setSuccess(!success)
       }
       // Handle success
-      console.log('User created successfully');
+      console.log('User created successfully')
+      setSuccess(!success);
     } catch (error) {
       console.log(error)
     }
   };
+  if (success == true && role == 'Driver') {
+    window.location.href = '/driver'; // Redirect to adult page
+  } 
 
 
   const handleRoleChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -126,7 +131,7 @@ const Page = () => {
             className="block w-full h-12  border-2 border-black rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="Male">Male</option>
-            <option value="Driver">Female</option>
+            <option value="Female">Female</option>
           </select>
         </div>
         {role === 'Driver' && (
