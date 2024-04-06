@@ -1,21 +1,24 @@
 "use client"
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React, { useState, FormEvent, ChangeEvent } from 'react'
-import { currentUser } from '@clerk/nextjs'
+// import { currentUser } from '@clerk/nextjs'
 
 const Page = () => {
   
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('Customer');
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
   const [mobile, setMobile] = useState('');
   const [vehicleType, setVehicleType] = useState('');
   const [vehicleNumber, setVehicleNumber] = useState('');
   const [gender, setGender] = useState('Male');
+  const router = useRouter()
 
   
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // const user=await currentUser()
+    // console.log(user)
     try {
       const response = await fetch('/api/addUser', {
         method: 'POST',
@@ -35,8 +38,9 @@ const Page = () => {
       if (!response.ok) {
         throw new Error('Failed to create user');
       }
-      // Handle success
+      
       console.log('User created successfully');
+      router.push('/')
     } catch (error) {
       console.log(error)
     }
