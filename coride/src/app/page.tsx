@@ -1,20 +1,68 @@
+'use client'
+import { useEffect, useState } from 'react';
+
+interface AnimatedTextProps {
+  text: string;
+}
+let t=0;
+
+const AnimatedText: React.FC<AnimatedTextProps> = ({ text }) => {
+  const [displayedText, setDisplayedText] = useState('');
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i <= text.length) {
+        setDisplayedText(text.substring(0, i));
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [text]);
+  t++;
+  if (t==1){
+    return <span className="text-5xl font-bold block mt-36 ml-32">{displayedText}</span>;
+  }
+  else{
+    return <span className="text-5xl font-bold block mt-8 ml-52">{displayedText}</span>;
+  }
+};
+
 export default function Home() {
+  const [showWithCoRide, setShowWithCoRide] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowWithCoRide(true);
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <>
-    <div>
-      <h1 className="text-5xl font-bold mt-40 ml-40">AnyTime, AnyWhere <br></br>with CoRide</h1>
-      <input 
+      <div>
+        <AnimatedText text="AnyTime, AnyWhere" />
+        {showWithCoRide && (
+          <AnimatedText text="with CoRide" />
+        )}
+        <div className="relative">
+          <input 
             type="text" 
-            placeholder="Where From" 
+            placeholder="Enter Pick Up Point" 
             className="border-2 border-black rounded-md mt-10 ml-52 py-2 px-4 h-14 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-        />
-        <br></br>
-        <input 
+          />
+          <br />
+          <input 
             type="text" 
-            placeholder="Where From" 
+            placeholder="Enter Destination" 
             className="border-2 border-black rounded-md m-10 ml-52 py-2 px-4 h-14 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-        />
-    </div>
+          />
+        </div>
+      </div>
     </>
   );
 }
