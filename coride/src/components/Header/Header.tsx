@@ -12,7 +12,7 @@ const Header = () => {
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
                             <a href="/" className="text-black">
-                                Logo
+                                LOGO
                             </a>
                         </div>
                     </div>
