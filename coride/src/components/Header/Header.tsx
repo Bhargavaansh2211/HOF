@@ -12,7 +12,7 @@ const Header = () => {
                 <div className="flex items-center justify-between h-24">
                     <div className="flex items-center">
                         <Image src={logo} alt='logo' className='w-20 h-20'></Image>
-                        <h1 className='font-bold text-2xl mt-2 ml-2'>CoRide</h1>
+                        <h1 className='font-bold text-2xl mt-2 ml-2'><Link href='/'>CoRide</Link></h1>
                     </div>
                     <div className="hidden md:flex space-x-4 justify-end text-lg font-semibold">
                         <Link href="/" className="text-black bg-yellow hover:bg-white hover:text-black rounded-lg p-2">

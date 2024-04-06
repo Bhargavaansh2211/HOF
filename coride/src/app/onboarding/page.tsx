@@ -35,7 +35,6 @@ const Page = () => {
       });
       if (!response.ok) {
         throw new Error('Failed to create user');
-        setSuccess(!success)
       }
       
       console.log('User created successfully');
