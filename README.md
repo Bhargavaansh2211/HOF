@@ -35,3 +35,8 @@ You can contribute by solving the given issues or by creating new ones and solvi
 7. **Submit a pull request:** Finally, submit a pull request from your forked repository to the original repository. Ensure to provide a clear description of your changes in the pull request.
 
 Thank you for contributing!
+
+## Contributers
+1. **nyb-zmr**
+2. **Bhargavaansh2211**
+3. **ajaybaghel05**
