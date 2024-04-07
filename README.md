@@ -2,7 +2,15 @@
 This Project is a Shared Cab Booking platform made using the concepts of React, Next JS, MongoDB, TypeScript, JavaScript.
 
 ## Description
-A web platform which revolutionizes the way users book cabs by allowing the users to share the journey with other people and split the fare, making it more economical, along side saving fuel and making less congestion on roads.
+A web platform which revolutionizes the way users book cabs by allowing the users to share the journey with other people and split the fare, making it more economical, along side saving fuel and making less congestion on roads. People travelling on similar routes or having sources or destination nearby can book a cab, during which they are asked to opt for sharing of cab. Through this user can save their money,reduce traffic problems in cities and it is also better for our enviroment as fuel will used less as compared when rided by single person.
+
+## Future Implementation
+There will be many new add-ons and features added on our website which can not be applied now due to complexity and time. Though we have made a logic but we were not able to implement it due to lack of time.
+Some of the features that are going to built:-
+1. Implementation of logic and algorithm which includes dynamic pricing model ie. price depends on multiple factors like time, route etc. 
+2. Driver's Dashboard which contain his profile, rides requests, earnings, ratings and reviews.
+3. Payment Gateway for secure and faster payments.
+4. Chatting, Free Calling feature for clients and drivers.
 
 ## Installation
 1. Clone the repository.
