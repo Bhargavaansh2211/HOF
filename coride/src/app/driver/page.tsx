@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 
-const Map = dynamic(() => import('../../components/Map/Map'), {
-  ssr: false,
-});
+// const Map = dynamic(() => import('../../components/Map/Map'), {
+//   ssr: false,
+// });
 
 interface Ride {
   id: number;
@@ -48,7 +48,7 @@ export default function DriverHome() {
           </ul>
         </div>
         <div className='w-[50%] mr-16 mt-12 h-max'>
-          <Map/>
+          {/* <Map/> */}
         </div>
       </div>
     </>
